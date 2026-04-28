@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, CheckCircle, AlertCircle, Loader2, CreditCard, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertCircle, Loader2, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ReservationFormData {
@@ -17,7 +17,6 @@ interface Props {
 }
 
 const PRICE_1M = 2792;
-const PRICE_3M = 8376;
 
 const trustVariants = {
   hidden: {},
@@ -31,7 +30,6 @@ const trustItemVariant = {
 export default function PresaleReservationForm({ seatsLeft, onSuccess, success }: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [term, setTerm] = useState<"1month" | "3months">("1month");
   const [consent, setConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,7 +37,7 @@ export default function PresaleReservationForm({ seatsLeft, onSuccess, success }
   const [nameFocused, setNameFocused] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
 
-  const price = term === "1month" ? PRICE_1M : PRICE_3M;
+  const price = PRICE_1M;
   const filledPercent = ((100 - seatsLeft) / 100) * 100;
 
   const validate = () => {
@@ -59,7 +57,7 @@ export default function PresaleReservationForm({ seatsLeft, onSuccess, success }
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-    onSuccess({ name, email, term, consent, marketingConsent });
+    onSuccess({ name, email, term: "1month", consent, marketingConsent });
   };
 
   return (
@@ -186,73 +184,6 @@ export default function PresaleReservationForm({ seatsLeft, onSuccess, success }
 
                   <form onSubmit={handleSubmit} noValidate>
 
-                    {/* Plan selector — pure React, no Framer Motion */}
-                    <div style={{ marginBottom: 20 }}>
-                      <p className="text-sm font-medium mb-3" style={{ color: "var(--dfl-text-lo)" }}>
-                        Срок бронирования
-                      </p>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                        {(["1month", "3months"] as const).map((t) => {
-                          const selected = term === t;
-                          return (
-                            <div
-                              key={t}
-                              onClick={() => setTerm(t)}
-                              style={{
-                                position: "relative",
-                                padding: "14px 16px",
-                                borderRadius: 12,
-                                border: `1.5px solid ${selected ? "var(--dfl-accent)" : "#1e2d3d"}`,
-                                background: selected ? "var(--dfl-accent-muted)" : "transparent",
-                                cursor: "pointer",
-                                transition: "border-color 0.2s ease, background 0.2s ease",
-                                userSelect: "none",
-                              }}
-                            >
-                              {/* Orange checkmark in top-right */}
-                              {selected && (
-                                <div
-                                  style={{
-                                    position: "absolute",
-                                    top: 8,
-                                    right: 8,
-                                    width: 18,
-                                    height: 18,
-                                    borderRadius: "50%",
-                                    background: "var(--dfl-accent)",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                  }}
-                                >
-                                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                                    <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                  </svg>
-                                </div>
-                              )}
-                              <div
-                                className="font-semibold text-sm"
-                                style={{ color: selected ? "var(--dfl-text-hi)" : "var(--dfl-text-lo)" }}
-                              >
-                                {t === "1month" ? "1 месяц" : "3 месяца"}
-                              </div>
-                              <div
-                                className="font-bold text-base mt-0.5"
-                                style={{ color: selected ? "var(--dfl-accent-bright)" : "var(--dfl-text-subtle)" }}
-                              >
-                                {t === "1month" ? "2 792 ₽" : "8 376 ₽"}
-                              </div>
-                              {t === "3months" && (
-                                <div className="text-xs mt-0.5" style={{ color: "var(--dfl-success)" }}>
-                                  выгоднее
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
                     {/* Name input */}
                     <div style={{ marginBottom: 14 }}>
                       <label
@@ -319,24 +250,6 @@ export default function PresaleReservationForm({ seatsLeft, onSuccess, success }
                           boxSizing: "border-box",
                         }}
                       />
-                    </div>
-
-                    {/* Payment method row */}
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 10,
-                        padding: "10px 14px",
-                        borderRadius: 10,
-                        border: "1px solid #1e2d3d",
-                        marginBottom: 20,
-                      }}
-                    >
-                      <CreditCard size={15} style={{ color: "var(--dfl-text-subtle)", flexShrink: 0 }} />
-                      <span className="text-sm" style={{ color: "var(--dfl-text-subtle)" }}>
-                        Оплата через ЮКассу · Карты РФ, СБП, ЮMoney
-                      </span>
                     </div>
 
                     {/* Checkbox 1 */}
