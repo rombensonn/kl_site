@@ -1,0 +1,20 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="56" fill="url(#bg)" />
+  <circle cx="820" cy="180" r="140" fill="rgba(255,255,255,0.08)" />
+  <circle cx="210" cy="760" r="200" fill="rgba(255,255,255,0.06)" />
+  <rect x="120" y="120" width="784" height="784" rx="36" fill="rgba(15,23,42,0.42)" stroke="rgba(255,255,255,0.16)" />
+  <text x="160" y="250" fill="#dbeafe" font-size="42" font-family="Arial, sans-serif">Kovallab Local Generation</text>
+  <text x="160" y="360" fill="#ffffff" font-size="64" font-weight="700" font-family="Arial, sans-serif">Studio portrait for smoke test</text>
+  <foreignObject x="160" y="430" width="680" height="240">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:30px;line-height:1.5;color:#dbeafe;">
+      SQLite-backed local mock image. Resolution: 1K. Type: photo.
+    </div>
+  </foreignObject>
+</svg>

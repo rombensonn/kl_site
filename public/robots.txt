@@ -1,0 +1,23 @@
+User-agent: *
+
+# Allow public pages
+Allow: /$
+Allow: /auth/login
+Allow: /auth/register
+Allow: /terms
+Allow: /privacy-policy
+Allow: /consent
+
+# Disallow internal app routes
+Disallow: /dashboard
+Disallow: /auth/reset-password
+Disallow: /brand-brief
+Disallow: /character
+Disallow: /generate/
+Disallow: /balance/
+Disallow: /projects/
+Disallow: /settings
+Disallow: /support
+
+# Sitemap
+Sitemap: https://kovalabs.ai/sitemap.xml

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1e3d"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.23
+                0 0 0 0 0.51
+                0 0 0 0 0.98
+                0 0 0 0.6 0"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="32" height="32" rx="8" fill="url(#bgGrad)"/>
+
+  <!-- Outer glow layer (blurred bolt behind) -->
+  <path
+    d="M19.5 3.5 L10 17.5 H16.5 L13 28.5 L23 14.5 H16.5 Z"
+    fill="#3b82f6"
+    filter="url(#outerGlow)"
+    opacity="0.9"
+  />
+
+  <!-- Lightning bolt with gradient and crisp glow -->
+  <path
+    d="M19.5 3.5 L10 17.5 H16.5 L13 28.5 L23 14.5 H16.5 Z"
+    fill="url(#boltGrad)"
+    filter="url(#glow)"
+  />
+</svg>
