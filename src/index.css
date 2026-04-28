@@ -307,6 +307,30 @@
     min-width: 0;
   }
 
+  /* Ensure interactive elements always show pointer cursor,
+     even when the custom cursor sets cursor:none on <html>. */
+  button:not(:disabled),
+  a[href],
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  label[for],
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"]):not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  input:disabled,
+  [disabled],
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
