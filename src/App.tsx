@@ -83,7 +83,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
     <AuthProvider>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/kl_site">
         <ScrollProgress />
         <Toaster
           position="top-right"
